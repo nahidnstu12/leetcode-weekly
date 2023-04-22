@@ -14,37 +14,50 @@
     "+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
     The total sum is 5 + 10 + 15 = 30.
  */
-var calPoints = function (operations) {
     let sum = [];
-    let point = 0;
-    // let totalPoint = 0
-    operations.forEach((item, index)=> {
-        if(typeof +item && !isNaN(item)){
+// var calPoints = function (operations) {
+//     let point = 0;
+//     // let totalPoint = 0
+//     operations.forEach((item, index)=> {
+//         if(typeof +item && !isNaN(item)){
+//
+//              sum.push(+item)
+//
+//         }
+//         else if(item == "C"){
+//             sum.pop();
+//         }
+//         else if(item == "D"){
+//             point = sum[sum.length - 1] * 2;
+//             sum.push(point)
+//         }else if(item == "+"){
+//             point = sum[sum.length - 1] + sum[sum.length - 2]
+//             sum.push(point)
+//         }
+//
+//
+//     })
+//     return sum.reduce((acc, cur)=> acc+cur, 0);
+// };
+var calPoints = function (operations) {
 
-            // point = index == 0 ? +item : point + (+item);
-             sum.push(+item)
-            // totalPoint += (+item);
-            // console.log("number", sum, totalPoint)
+    const sum = operations.reduce((acc, item)=> {
+        if(typeof +item && !isNaN(item)){
+            acc.push(+item)
         }
         else if(item == "C"){
-            sum.pop();
-            // totalPoint -= sum.pop();
-            // console.log("clear", sum, totalPoint)
+            acc.pop()
         }
         else if(item == "D"){
-            point = sum[sum.length - 1] * 2;
-            sum.push(point)
-            // totalPoint += point;
-            // console.log("double", sum, totalPoint)
-        }else if(item == "+"){
-            point = sum[sum.length - 1] + sum[sum.length - 2]
-            sum.push(point)
-            // totalPoint += point;
-            // console.log("add", sum, totalPoint)
+            acc.push(acc[acc.length - 1]*2 )
         }
+        else if(item == "+"){
+            acc.push(acc[acc.length - 1] + acc[acc.length - 2] )
+        }
+        return acc;
 
+    }, [])
 
-    })
     return sum.reduce((acc, cur)=> acc+cur, 0);
 };
 
