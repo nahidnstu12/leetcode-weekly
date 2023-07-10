@@ -40,13 +40,15 @@
 // };
 
 var rotate = function (nums, k) {
-  let step = nums.length < k ? k % nums.length : k;
+  k = k % nums.length;
+  let i, j;
   if (nums.length !== 1) {
-    const firstpart = nums.slice(0, nums.length - step);
-    for (let i = 0; i < step; i++) {
-      nums[i] = nums[nums.length - step + i];
+    const firstpart = nums.slice(0, nums.length - k);
+
+    for (i = 0; i < k; i++) {
+      nums[i] = nums[nums.length - k + i];
     }
-    for (let i = step, j = 0; i < nums.length; i++, j++) {
+    for (i = k, j = 0; i < nums.length; i++, j++) {
       nums[i] = firstpart[j];
     }
   }
