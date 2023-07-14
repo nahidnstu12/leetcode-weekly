@@ -27,6 +27,8 @@
 // return true;
 // };
 
+
+
 var checkRecord = function(s) {
     let countForA = s.match(/A/g);
     if(countForA?.length > 1) return false;
