@@ -12,6 +12,8 @@ const TOPIC_MAP = {
   dynamic_programming: "dynamic-programming",
   tree: "trees",
   graph: "graphs",
+  easy: "easy",
+  others: "others"
 };
 
 // Function to format problem title into a filename
