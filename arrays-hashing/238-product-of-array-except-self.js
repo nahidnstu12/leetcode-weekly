@@ -10,19 +10,19 @@ function solution2(nums) {
     let leftArr = [];
     let numsArr = []
     for (let i = 0; i < nums.length; i++) {
-        if (i === 0) { 
-            leftArr.push(1); 
-            continue; 
+        if (i === 0) {
+            leftArr.push(1);
+            continue;
         }
         leftArr.push(leftArr[leftArr.length - 1] * nums[i - 1])
     }
-    for (let i = nums.length-1; i >= 0; i--) {
-        
-        if (i === nums.length-1) { 
-            rightArr.unshift(1); 
-            continue; 
+    for (let i = nums.length - 1; i >= 0; i--) {
+
+        if (i === nums.length - 1) {
+            rightArr.unshift(1);
+            continue;
         }
-        rightArr.unshift(rightArr[0] * nums[i+1])
+        rightArr.unshift(rightArr[0] * nums[i + 1])
     }
 
     for (let i = 0; i < nums.length; i++) {
@@ -31,31 +31,33 @@ function solution2(nums) {
     return numsArr
 }
 function solution(nums) {
-    let rightArr = 1;
-    let leftArr = 1;
+    let rightSum = 1;
+    let leftSum = 1;
     let numsArr = []
-   
-    for (let i = 0, j=nums.length-1; i < nums.length; i++, j--) {
-        if(i>0)leftArr*= nums[i-1];
-        if(j>=0) rightArr*= nums[j++]
 
-        if (i === nums.length-1) { 
-            numsArr.push(1 * leftArr); 
-            continue; 
+    for (let i = 0; i < nums.length; i++) {
+        if (i === 0) {
+            numsArr.push(1)
+        } else {
+            leftSum *= nums[i-1]
+            numsArr.push(leftSum)
         }
-        if(i === 0){
-            numsArr.push(1 * rightArr); 
-            continue; 
-        }
-        
-        console.log({i,  leftArr, j,rightArr});
-        numsArr.push(leftArr)
-        
+
     }
-    
+    for (let i = nums.length-1; i >= 0; i--) {
+        
+        if (i === nums.length-1) {
+           continue;
+        } else {
+            rightSum*= nums[i+1]
+            numsArr[i]*=rightSum
+        }
+
+    }
+
     return numsArr
 }
 
 // Example Usage
-console.log(solution([5,2,3,4]));
+console.log(solution([5, 2, 3, 4]));
 // [24,12,8,6]
